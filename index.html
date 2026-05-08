@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>විකුණුම් වාර්තා</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #1e3a8a, #2563eb, #0f172a, #1d4ed8);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      padding: 30px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 30px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    .search-box {
+      margin-bottom: 25px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .report-card {
+      background: white;
+      border-top: 5px solid #2563eb;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .report-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .report-card h3 {
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+
+    .report-card p {
+      margin-bottom: 18px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .report-card a {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .report-card a:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .floating-circle {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      animation: float 20s linear infinite;
+      z-index: -1;
+      backdrop-filter: blur(4px);
+    }
+
+    .circle1 {
+      width: 220px;
+      height: 220px;
+      top: 10%;
+      left: 5%;
+    }
+
+    .circle2 {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: 8%;
+      animation-duration: 25s;
+    }
+
+    .circle3 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 40%;
+      animation-duration: 18s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-40px) rotate(180deg);
+      }
+      100% {
+        transform: translateY(0px) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-circle circle1"></div>
+  <div class="floating-circle circle2"></div>
+  <div class="floating-circle circle3"></div>
+
+  <div class="container">
+
+    <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
+      <select id="languageSelector" style="padding:10px; border-radius:8px; border:1px solid #ccc; font-size:15px;">
+        <option value="en" selected>English</option>
+        <option value="si">සිංහල</option>
+      </select>
+    </div>
+
+    <div class="header">
+      <h1 id="mainTitle">SAMARATHUNGA STORES - GIRIULLA</h1>
+      <h2 style="margin-top:10px; font-size:22px; font-weight:normal;">Monthly Sales Reports</h2>
+      <p id="subTitle">Daily sales Excel files stored in Google Drive</p>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search report month...">
+    </div>
+
+    <h2 id="creditTitle" style="color:white; margin-bottom:20px; font-size:28px; text-align:center;">Credit Book Reports</h2>
+
+    <div style="background:rgba(255,255,255,0.15); padding:20px; border-radius:20px; margin-bottom:35px; backdrop-filter:blur(10px); border:2px solid rgba(255,255,255,0.2);">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:15px;">
+        <div>
+          <h3 id="creditBookHeading" style="color:white; font-size:26px; margin-bottom:8px;">📒 Credit Book Excel Report</h3>
+          <p id="creditBookText" style="color:#e0e7ff;">Open your customer credit/debt Excel report instantly</p>
+        </div>
+
+        <a id="creditBookBtn" href="https://docs.google.com/spreadsheets/d/1h_qkS4iAO2gKFxUGvLnW3nIC60FLgaeV/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank" style="background:#f59e0b; color:white; padding:14px 24px; border-radius:12px; text-decoration:none; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.2); transition:0.3s;">
+          Open Credit Book
+        </a>
+      </div>
+    </div>
+
+    <div class="reports-grid" id="reportsContainer">
+
+      <div class="report-card">
+        <h3>2025 August</h3>
+        <p>Sales report for August 2025</p>
+        <a href="https://docs.google.com/spreadsheets/d/156tuwYrI4z4uyWx4X-ZLBUfvKKG8c5px/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2025 September</h3>
+        <p>Sales report for September 2025</p>
+        <a href="https://docs.google.com/spreadsheets/d/1r5B5xhhDyS0Lib-OSjX59TTp_4PcTLRI/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2025 October</h3>
+        <p>Sales report for October 2025</p>
+        <a href="https://docs.google.com/spreadsheets/d/1dHIiQnRrD6EiSZCDyNGCG4obq2x6pQab/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2025 November</h3>
+        <p>Sales report for November 2025</p>
+        <a href="https://docs.google.com/spreadsheets/d/11A-0P2ZFXbF3sffHSv_ri3tAX4VuSxvl/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2025 December</h3>
+        <p>Sales report for December 2025</p>
+        <a href="https://docs.google.com/spreadsheets/d/1kRiLOWXJ82Lk7np2RR79rMxEcODA3K-_/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2026 January</h3>
+        <p>Sales report for January 2026</p>
+        <a href="https://docs.google.com/spreadsheets/d/1bq32C19UNxHWVeRimTt5BNc-qJ0_S1k9/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2026 February</h3>
+        <p>Sales report for February 2026</p>
+        <a href="https://docs.google.com/spreadsheets/d/1ZlVZKeGx1c9KjFdh3xfLd-kjnIENUZ5_/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2026 March</h3>
+        <p>Sales report for March 2026</p>
+        <a href="https://docs.google.com/spreadsheets/d/16zs9kw6z4T7onHSFlRCUIuEKr22uIw8B/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2026 April</h3>
+        <p>Sales report for April 2026</p>
+        <a href="https://docs.google.com/spreadsheets/d/1tet2xHAv7EnNXBLGaB7muT9yuEh5nRr0/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+      <div class="report-card">
+        <h3>2026 May</h3>
+        <p>Sales report for May 2026</p>
+        <a href="https://docs.google.com/spreadsheets/d/1kEgPkI5TVtejHUJQQFWilRptCCYwEHKn/edit?usp=drive_link&ouid=111000008061584579291&rtpof=true&sd=true" target="_blank">Open Excel</a>
+      </div>
+
+    </div>
+
+    <footer>
+      copyright© SARANGA DILSHAN
+    </footer>
+
+  </div>
+
+  <script>
+    const languageSelector = document.getElementById('languageSelector');
+    const mainTitle = document.getElementById('mainTitle');
+    const subTitle = document.getElementById('subTitle');
+    const searchInputField = document.getElementById('searchInput');
+    const cardsContainer = document.getElementById('reportsContainer');
+
+    const monthsEn = [
+      'August 2025','September 2025','October 2025','November 2025','December 2025',
+      'January 2026','February 2026','March 2026','April 2026','May 2026'
+    ];
+
+    const monthsSi = [
+      '2025 අගෝස්තු','2025 සැප්තැම්බර්','2025 ඔක්තෝබර්','2025 නොවැම්බර්','2025 දෙසැම්බර්',
+      '2026 ජනවාරි','2026 පෙබරවාරි','2026 මාර්තු','2026 අප්‍රේල්','2026 මැයි'
+    ];
+
+    function getCurrentIndex() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+
+      const anchorYear = 2025;
+      const anchorMonth = 7; // August
+
+      return (year * 12 + month) - (anchorYear * 12 + anchorMonth);
+    }
+
+    function getCurrentLabel(isEnglish) {
+      const index = getCurrentIndex();
+      if (index < 0 || index > 9) return null;
+      return isEnglish ? monthsEn[index] : monthsSi[index];
+    }
+
+    function moveCurrentMonthToTop() {
+      const index = getCurrentIndex();
+      const cards = Array.from(document.querySelectorAll('.report-card'));
+
+      if (index >= 0 && index < cards.length) {
+        const target = cards.find(c => c.querySelector('h3').innerText.includes(monthsEn[index]) || c.querySelector('h3').innerText.includes(monthsSi[index]));
+        if (target) cardsContainer.prepend(target);
+      }
+    }
+
+    function highlightCurrentMonth(isEnglish) {
+      const currentLabel = getCurrentLabel(isEnglish);
+      const cards = document.querySelectorAll('.report-card');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText;
+
+        if (title === currentLabel) {
+          card.style.borderTop = '5px solid #f59e0b';
+          card.style.boxShadow = '0 0 18px rgba(245, 158, 11, 0.6)';
+        } else {
+          card.style.borderTop = '5px solid #2563eb';
+          card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+        }
+      });
+    }
+
+    function setEnglish() {
+      mainTitle.innerText = 'SAMARATHUNGA STORES - GIRIULLA';
+      document.querySelector('h2').innerText = 'Monthly Sales Reports';
+      subTitle.innerText = 'Daily sales Excel files stored in Google Drive';
+      searchInputField.placeholder = 'Search report month...';
+
+      document.getElementById('creditTitle').innerText = 'Credit Book Reports';
+      document.getElementById('creditBookHeading').innerText = '📒 Credit Book Excel Report';
+      document.getElementById('creditBookText').innerText = 'Open your customer credit/debt Excel report instantly';
+      document.getElementById('creditBookBtn').innerText = 'Open Credit Book';
+
+      document.querySelectorAll('.report-card').forEach((card, index) => {
+        card.querySelector('h3').innerText = monthsEn[index];
+        card.querySelector('p').innerText = 'Sales report for ' + monthsEn[index];
+        card.querySelector('a').innerText = 'Open Excel';
+      });
+    }
+
+    function setSinhala() {
+      mainTitle.innerText = 'සමරතුංග ස්ටෝර්ස් - ගිරිඋල්ල';
+      document.querySelector('h2').innerText = 'මාසික විකුණුම් වාර්තා';
+      subTitle.innerText = 'Google Drive තුළ සුරක්ෂිත දෛනික විකුණුම් Excel ගොනු';
+      searchInputField.placeholder = 'වාර්තා මාසය සොයන්න...';
+
+      document.getElementById('creditTitle').innerText = 'ණය පොත් වාර්තා';
+      document.getElementById('creditBookHeading').innerText = '📒 ණය පොත් Excel වාර්තාව';
+      document.getElementById('creditBookText').innerText = 'පාරිභෝගික ණය/බැර Excel වාර්තාව ක්ෂණිකව විවෘත කරන්න';
+      document.getElementById('creditBookBtn').innerText = 'ණය පොත විවෘත කරන්න';
+
+      document.querySelectorAll('.report-card').forEach((card, index) => {
+        card.querySelector('h3').innerText = monthsSi[index];
+        card.querySelector('p').innerText = monthsSi[index] + ' විකුණුම් වාර්තාව';
+        card.querySelector('a').innerText = 'Excel ගොනුව විවෘත කරන්න';
+      });
+    }
+
+    function applyLayout(isEnglish) {
+      moveCurrentMonthToTop();
+      highlightCurrentMonth(isEnglish);
+    }
+
+    languageSelector.addEventListener('change', function () {
+      const isEnglish = this.value === 'en';
+
+      if (isEnglish) setEnglish();
+      else setSinhala();
+
+      applyLayout(isEnglish);
+    });
+
+    searchInputField.addEventListener('keyup', function () {
+      const value = this.value.toLowerCase();
+
+      document.querySelectorAll('.report-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(value) ? 'block' : 'none';
+      });
+    });
+
+    // init
+    setEnglish();
+    applyLayout(true);
+</script>
+
+</body>
+</html>
